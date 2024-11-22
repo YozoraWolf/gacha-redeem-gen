@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "GachaGame Redeem Generator",
+    "name": "Gacha Game Redeemer Generator",
     "version": "1.0",
     "description": "An extension to generate redeem links for Gacha Games",
     "action": {

@@ -1,4 +1,8 @@
-# ⭐️🔗 Gacha Game Redeemer Generator
+<p align="center">
+    <img src="./preview.png" alt="Gacha Redeemer Generator" width="300">
+</p>
+
+# ⭐️🔗 Gacha Game Redeemer Generator 🔗⭐️
 
 This tool allows you to generate redeem links for some Gacha games. It is useful for sharing codes by allowing others to just click on the link to redeem a code from the game.
 
