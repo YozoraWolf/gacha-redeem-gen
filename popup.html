@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    :root {
+        --primary-color: rgb(38, 165, 224);
+        --primary-color-dark: rgb(34, 141, 190);
+    }
+
+    body {
+      background: url('bg.jpg');
+      background-position: center;
+      background-size: cover;
+      font-family: Arial, sans-serif;
+      width: 400px;
+      margin: 0;
+      padding: 10px;
+    }
+
+    h3 {
+      text-align: center;
+      color: white;
+      font-size: 24px;
+      font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    select {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        border-radius: 5px;
+        padding: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        border: 1px solid #ccc;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: none;
+      background-color: var(--primary-color);
+      color: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: var(--primary-color-dark);
+    }
+
+    label {
+        font-size: 16px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        color: white;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    textarea {
+        width: 95%;
+        height: 100px;
+        font-size: 16px;
+        border-radius: 5px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background-color: rgba(255, 255, 2555, 0.8);
+    }
+
+    input {
+        font-size: 16px;
+        border-radius: 5px;
+        padding: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border: 1px solid #ccc;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background-color: rgba(255, 255, 2555, 0.8);
+    }
+
+    body {
+        padding: 15px;
+    }
+
+    #help-modal-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 20px;
+        height: 20px;
+        background-color: rgba(2555, 255, 255, 0.2);
+        border: 1px solid white;
+        color: white;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #help-modal-cont {
+        display: none;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 20px;
+        box-sizing: border-box;
+        backdrop-filter: blur(5px);
+    }
+
+    .help-modal-inner {
+        background-color: rgba(0, 0, 0, 0.5);
+        color: black;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    #help-modal-cont h3 {
+        text-align: center;
+        margin-top: 5px;
+    }
+
+    #help-modal-cont p {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        color: white;
+        font-size: 1rem;
+    }
+
+    #help-modal-cont .author {
+        font-size: 1.2rem;
+        font-style: italic;
+        font-weight: bold;
+    }
+
+    #help-modal-cont .link {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-size: 1rem;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="help-modal-btn">?</div>
+  <h3>Gacha Game Link Generator</h3>
+  <select id="game">
+    <option value="genshin">Genshin Impact</option>
+    <option value="hsr">Honkai: Star Rail</option>
+    <option value="zzz">Zenless Zone Zero</option>
+  </select>
+  <input id="separator-line"placeholder="Enter separator here..." value="" maxlength="10"/>
+  <textarea type="text" id="links" placeholder="Enter codes here"></textarea>
+  <label for="separator-token">Separator Token:</label>
+  <select id="separator-token">
+    <option value="\n">New Line</option>
+    <option value=",">Comma</option>
+    <option value=" ">Space</option>
+  </select> 
+  <textarea id="gen-links" readonly placeholder="Output will be displayed here..."></textarea>
+  <button id="gen-links-btn">Generate Links</button>
+  <button id="copy-links-btn"></button>
+
+  <div id="help-modal-cont">
+    <div class="help-modal-inner">
+        <h3>Help</h3>
+        <p>1. Select the game you want to generate links for.</p>
+        <p>2. Enter the separator you want to use to separate the links.</p>
+        <p>3. Enter the codes you want to generate links for.</p>
+        <p>4. Select the separator token you want to use to separate the links in the output.</p>
+        <p>5. Click the "Generate Links" button to generate the links.</p>
+        <p>6. Click the "Copy Links" button to copy the generated links to your clipboard.</p>
+        <p>7. Paste the generated links wherever you want.</p>
+        <hr>
+        <p>Tool made by</p>
+        <p class="author">YozoraWolf</p>
+        <a target="about:blank" href="https://github.com/YozoraWolf/gacha-redeem-gen" class="link">Repo</a>"
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

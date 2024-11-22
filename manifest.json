@@ -1,0 +1,16 @@
+{
+    "manifest_version": 3,
+    "name": "GachaGame Redeem Generator",
+    "version": "1.0",
+    "description": "An extension to generate redeem links for Gacha Games",
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+        "16": "icon.png",
+        "48": "icon.png",
+        "128": "icon.png"
+      }
+    },
+    "permissions": []
+  }
+  
