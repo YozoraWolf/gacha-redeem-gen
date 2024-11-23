@@ -2,16 +2,22 @@
 <html>
 <head>
   <style>
+
+    /* CSS Variables */
     :root {
         --primary-color: rgb(38, 165, 224);
         --primary-color-dark: rgb(34, 141, 190);
+
+        --font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+   
+        --inputs-opacity: 0.8;
     }
 
     body {
       background: url('bg.jpg');
       background-position: center;
       background-size: cover;
-      font-family: Arial, sans-serif;
+      font-family: var(--font-family);
       width: 400px;
       margin: 0;
       padding: 10px;
@@ -21,7 +27,7 @@
       text-align: center;
       color: white;
       font-size: 24px;
-      font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      font-family: var(--font-family);
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
 
@@ -34,6 +40,14 @@
         padding-right: 10px;
         border: 1px solid #ccc;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background-color: rgba(255, 255, 2555, var(--inputs-opacity));
+    }
+
+    
+
+    option {
+        font-size: 16px;
+        font-family: var(--font-family);
     }
 
     button {
@@ -53,6 +67,12 @@
       background-color: var(--primary-color-dark);
     }
 
+    button:active {
+        background-color: var(--primary-color-dark);
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+        transform: translateY(2px);
+    }
+
     label {
         font-size: 16px;
         margin-top: 5px;
@@ -69,7 +89,7 @@
         padding: 10px;
         border: 1px solid #ccc;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        background-color: rgba(255, 255, 2555, 0.8);
+        background-color: rgba(255, 255, 2555, var(--inputs-opacity));
     }
 
     input {
@@ -80,7 +100,7 @@
         padding-bottom: 5px;
         border: 1px solid #ccc;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        background-color: rgba(255, 255, 2555, 0.8);
+        background-color: rgba(255, 255, 2555, var(--inputs-opacity));
     }
 
     body {
@@ -100,10 +120,11 @@
         text-align: center;
         line-height: 20px;
         cursor: pointer;
+        user-select: none;
     }
 
-    #help-modal-cont {
-        display: none;
+    .help-modal-outer {
+        display: flex;
         justify-content: center;
         align-items: center;
         position: fixed;
@@ -116,35 +137,61 @@
         padding: 20px;
         box-sizing: border-box;
         backdrop-filter: blur(5px);
+
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+        z-index: 1000;
     }
+
+    /* Active state */
+    .modal-active {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .modal-active .help-modal-inner {
+        transform: scale(.9);
+        opacity: 1;
+    }
+
+
 
     .help-modal-inner {
         background-color: rgba(0, 0, 0, 0.5);
         color: black;
         padding: 20px;
+        margin: 20px;
         border-radius: 5px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+        /* Initial hidden state */
+        transform: scale(0); 
+        opacity: 0;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        text-align: center;
+        width: 300px;
     }
 
-    #help-modal-cont h3 {
+    .help-modal-inner h3 {
         text-align: center;
         margin-top: 5px;
     }
 
-    #help-modal-cont p {
+    .help-modal-inner p {
         margin-top: 10px;
         margin-bottom: 10px;
         color: white;
         font-size: 1rem;
     }
 
-    #help-modal-cont .author {
+    .help-modal-inner .author {
         font-size: 1.2rem;
         font-style: italic;
         font-weight: bold;
     }
 
-    #help-modal-cont .link {
+    .help-modal-inner .link {
         color: var(--primary-color);
         text-decoration: none;
         font-size: 1rem;
@@ -168,11 +215,11 @@
     <option value=",">Comma</option>
     <option value=" ">Space</option>
   </select> 
-  <textarea id="gen-links" readonly placeholder="Output will be displayed here..."></textarea>
+  <textarea id="gen-links" readonly placeholder="Generated links will be displayed here..."></textarea>
   <button id="gen-links-btn">Generate Links</button>
   <button id="copy-links-btn"></button>
 
-  <div id="help-modal-cont">
+  <div id="help-modal-cont" class="help-modal-outer">
     <div class="help-modal-inner">
         <h3>Help</h3>
         <p>1. Select the game you want to generate links for.</p>

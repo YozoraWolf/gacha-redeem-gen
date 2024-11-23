@@ -52,10 +52,20 @@ document.getElementById("copy-links-btn").addEventListener("click", (el) => {
     });
 });
 
-document.getElementById("help-modal-btn").addEventListener("click", () => {
-    document.getElementById("help-modal-cont").style.display = "flex";
+document.getElementById("help-modal-btn").addEventListener("click", (event) => {
+    const helpModal = document.getElementById("help-modal-cont");
+    openModal(helpModal );
 });
 
-document.getElementById("help-modal-cont").addEventListener("click", () => {
-    document.getElementById("help-modal-cont").style.display = "none";
+document.getElementById("help-modal-cont").addEventListener("click", (event) => {
+    closeModal(event.target);
 });
+
+function openModal(helpModal) {
+    helpModal.classList.add('modal-active');
+  }
+  
+  // Function to close modal
+  function closeModal(helpModal) {
+    helpModal.classList.remove('modal-active');
+  }
